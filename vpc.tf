@@ -1,3 +1,10 @@
+# Generador de sufijo aleatorio para evitar colisiones
+resource "random_string" "sufijo" {
+  length  = 5
+  special = false
+  upper   = false
+}
+
 # 1. Configuración de KMS
 resource "aws_kms_key" "log_key" {
   description             = "Llave para cifrar logs de CloudWatch"
@@ -6,7 +13,7 @@ resource "aws_kms_key" "log_key" {
 }
 
 resource "aws_kms_alias" "log_key_alias" {
-  name          = "alias/cloudwatch-logs-key-v5" # <-- Cambiado a v5
+  name          = "alias/cloudwatch-logs-key-${random_string.sufijo.result}"
   target_key_id = aws_kms_key.log_key.key_id
 }
 
@@ -41,7 +48,7 @@ resource "aws_kms_key_policy" "log_key_policy" {
 
 # 2. Infraestructura de Red (VPC, Subnets)
 resource "aws_vpc" "mi_vpc" {
-  cidr_block           = "10.0.0.0/16"
+  cidr_block           = "10.1.0.0/16"
   enable_dns_hostnames = true
   enable_dns_support   = true
 }
@@ -63,34 +70,34 @@ resource "aws_internet_gateway" "igw" {
 # Subnets
 resource "aws_subnet" "subnet_publica_1" {
   vpc_id                  = aws_vpc.mi_vpc.id
-  cidr_block              = "10.0.1.0/24"
+  cidr_block              = "10.1.1.0/24"
   map_public_ip_on_launch = false
 }
 
 resource "aws_subnet" "subnet_publica_2" {
   vpc_id                  = aws_vpc.mi_vpc.id
-  cidr_block              = "10.0.2.0/24"
+  cidr_block              = "10.1.2.0/24"
   map_public_ip_on_launch = false
 }
 
 resource "aws_subnet" "subnet_privada_1" {
   vpc_id                  = aws_vpc.mi_vpc.id
-  cidr_block              = "10.0.3.0/24"
+  cidr_block              = "10.1.3.0/24"
   map_public_ip_on_launch = false
 }
 
 resource "aws_subnet" "subnet_privada_2" {
   vpc_id                  = aws_vpc.mi_vpc.id
-  cidr_block              = "10.0.4.0/24"
+  cidr_block              = "10.1.4.0/24"
   map_public_ip_on_launch = false
 }
 
-# 3. Logging (CloudWatch y Flow Logs)
 resource "aws_cloudwatch_log_group" "vpc_log_group" {
-  name              = "/aws/vpc/flow-logs-v6" # <-- Cambiado a v6
+  name              = "/aws/vpc/flow-logs-${random_string.sufijo.result}"
   retention_in_days = 365
   kms_key_id        = aws_kms_key.log_key.arn
 }
+
 resource "aws_flow_log" "mi_flow_log" {
   iam_role_arn    = data.aws_iam_role.lab_role.arn
   log_destination = aws_cloudwatch_log_group.vpc_log_group.arn

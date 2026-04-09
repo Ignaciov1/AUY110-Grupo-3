@@ -7,6 +7,11 @@ terraform {
       source  = "hashicorp/aws"
       version = "~> 6.40.0"
     }
+    # Añadimos el proveedor random para complacer a TFLint
+    random = {
+      source  = "hashicorp/random"
+      version = "~> 3.6"
+    }
   }
 }
 

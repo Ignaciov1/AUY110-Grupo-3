@@ -3,6 +3,6 @@ data "aws_iam_role" "lab_role" {
 }
 
 resource "aws_iam_instance_profile" "profile_ec2" {
-  name = "ec2_profile_v4" 
+  name = "ec2_profile_v4"
   role = data.aws_iam_role.lab_role.name
 }

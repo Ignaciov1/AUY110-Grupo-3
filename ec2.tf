@@ -1,24 +1,20 @@
-resource "aws_security_group" "ssh_access" {
-  name        = "ssh-access"
-  description = "Permitir acceso SSH restringido"
-  vpc_id      = aws_vpc.mi_vpc.id
+resource "aws_instance" "mi_ec2" {
+  ami                    = "ami-0ec10929233384c7f"
+  instance_type          = "t2.micro"
+  subnet_id              = aws_subnet.subnet_publica_1.id
+  vpc_security_group_ids = [aws_security_group.ssh_access.id]
 
-  ingress {
-    description = "SSH desde mi IP segura"
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = ["201.189.206.99/32"]
+  monitoring           = true
+  ebs_optimized        = true
+  iam_instance_profile = aws_iam_instance_profile.profile_ec2.name
+
+  metadata_options {
+    http_tokens = "required"
   }
 
-  egress {
-    description = "Salida restringida HTTPS"
-    from_port   = 443
-    to_port     = 443
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+  root_block_device {
+    encrypted = true
   }
 
-  tags = { Name = "ssh-access" }
+  tags = { Name = "AUY1105-duocapp-ec2" }
 }
-

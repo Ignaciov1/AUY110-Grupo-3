@@ -11,7 +11,7 @@ allow = result if {
     some i
     resource := input.resource_changes[i]
     resource.type == "aws_instance"
-    resource.change.after.tags.Name == "MY-EC2-Instance"
+    resource.change.after.tags.Name == "AUY1105-duocapp-ec2"
 
     result := {
         "status": true,

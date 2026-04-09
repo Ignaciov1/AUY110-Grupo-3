@@ -8,4 +8,6 @@ Todos los cambios notables en este proyecto serán documentados en este archivo.
 
 20:09 - Se agrega el archivo provider.tf con su ultima version disponible.
 
-20:13 - se agrega el archivo vpc.tf con toda la configuracion de redes.
+20:13 - Se agrega el archivo vpc.tf con toda la configuracion de redes.
+
+20:25 - Se agrega el archivo ec2.tf , el archivo iam.tf y el archivo sg-group.tf. 

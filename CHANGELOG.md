@@ -11,3 +11,5 @@ Todos los cambios notables en este proyecto serán documentados en este archivo.
 20:13 - Se agrega el archivo vpc.tf con toda la configuracion de redes.
 
 20:25 - Se agrega el archivo ec2.tf , el archivo iam.tf y el archivo sg-group.tf. 
+
+20:50 - Se añadio el workflow con los archivos de prueba de seguridad de "Tflint" , "Checkov" y "Terraform Validate".

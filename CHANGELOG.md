@@ -10,3 +10,8 @@ Todas las modificaciones notables de este proyecto serán documentadas en este a
 
 ### Removed
 - Eliminación de archivos locales `vpc.tf`, `ec2.tf`, `sg-group.tf` e `iam.tf` (migrados a repositorios modulares independientes).
+
+## [1.0.1] - 2026-05-28
+### Fixed
+- Endurecimiento de seguridad en el pipeline CI/CD: se eliminó la bandera `--soft-fail` de Checkov.
+- Excepción explícita de la regla `CKV2_AWS_5` añadida para evitar falsos positivos de recursos huérfanos al utilizar módulos externos de red y cómputo.

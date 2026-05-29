@@ -4,8 +4,8 @@ Repositorio principal para la asignatura **AUY1105 - Infraestructura como Códig
 
 ## Arquitectura Modular
 Este repositorio no contiene definición de recursos directos, sino que invoca los siguientes módulos externos versionados:
-1. **Módulo de Redes (v0.1.0):** [Repositorio de VPC](https://github.com/Ignaciov1/terraform-aws-vpc-AUY1105-grupo-3) - Encargado de VPC, Subredes, NAT, IGW y seguridad (KMS, Security Groups).
-2. **Módulo de Cómputo (v0.1.0):** [Repositorio de EC2](https://github.com/Ignaciov1/terraform-aws-ec2-AUY1105-grupo-3) - Encargado del despliegue de instancias EC2 y perfiles IAM.
+1. **Módulo de Redes (v0.1.2):** [Repositorio de VPC](https://github.com/Ignaciov1/terraform-aws-vpc-AUY1105-grupo-3) - Encargado de VPC, Subredes, NAT, IGW y seguridad (KMS, Security Groups).
+2. **Módulo de Cómputo (v0.1.1):** [Repositorio de EC2](https://github.com/Ignaciov1/terraform-aws-ec2-AUY1105-grupo-3) - Encargado del despliegue de instancias EC2 y perfiles IAM.
 
 ## Automatización (CI/CD)
 El proyecto incluye un pipeline en GitHub Actions que realiza:

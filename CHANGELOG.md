@@ -1,19 +1,12 @@
 # Changelog
-Todos los cambios notables en este proyecto serán documentados en este archivo.
 
-## [Unreleased]
-- Inicialización del repositorio. 08/04/2026 - 19:00
+Todas las modificaciones notables de este proyecto serán documentadas en este archivo de acuerdo con el estándar de Versionado Semántico (SemVer).
 
-19:30 - Se agrego el archivo .gitignore y el CHANGELOG.md al repositorio.
+## [1.0.0] - 2026-05-28
+### Changed
+- Refactorización completa de la infraestructura: se eliminó el código monolítico local.
+- El repositorio ahora actúa como Orquestador Central invocando módulos externos.
+- Actualización del pipeline CI/CD (`cicd.yml`) para soportar la validación OPA en recursos anidados por módulos y añadir rollback automático (Destroy) en caso de fallos.
 
-20:09 - Se agrega el archivo provider.tf con su ultima version disponible.
-
-20:13 - Se agrega el archivo vpc.tf con toda la configuracion de redes.
-
-20:25 - Se agrega el archivo ec2.tf , el archivo iam.tf y el archivo sg-group.tf. 
-
-20:50 - Se añadio el workflow con los archivos de prueba de seguridad de "Tflint" , "Checkov" y "Terraform Validate".
-
-21:20 - Se verificó que el worflow funciona correctamente para poder pasar a la fase 4.
-
-21:30 - Se añaden las últimas reglas rego para mantener la seguridad de la manera más estricta posible. Se modificó el workflow para que estas sigan el flujo. 
+### Removed
+- Eliminación de archivos locales `vpc.tf`, `ec2.tf`, `sg-group.tf` e `iam.tf` (migrados a repositorios modulares independientes).
